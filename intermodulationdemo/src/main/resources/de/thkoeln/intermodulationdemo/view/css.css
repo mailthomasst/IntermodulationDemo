@@ -1,0 +1,762 @@
+/* BRIGHT COLORS */
+* {
+	
+	-fx-my-background-dark: #EFEFEF;
+	-fx-my-background-bright: #DDDDDD;
+
+	-fx-my-element-standard: #121212;	
+
+	-fx-my-text-dark: #202020;
+	-fx-my-text-standard: #121212;
+	-fx-my-text-bright: #000000;
+	
+	-fx-my-highlight-hover-background: #DDDDDD;
+	-fx-my-highlight-hover: #DDDDDD;
+	-fx-my-highlight-selected: #0057BD;
+
+	-fx-my-warning: #E62E4C;
+
+	-fx-chart-series-noise: #202020;
+	-fx-chart-series-default: #0057BD;
+	-fx-chart-series-default-highlite: #147DFB;
+	-fx-chart-series-dist-two: #FBA71B;
+	-fx-chart-series-dist-two-highlite: #FFBA48;
+	-fx-chart-series-dist-three: #57B757;
+	-fx-chart-series-dist-three-highlite: #84D384;
+	-fx-chart-grid: #121212;
+	-fx-chart-high-contrast: #000000;
+}
+
+/* Dark COLORS */
+/* {
+	-fx-my-background-dark: #121212;
+	-fx-my-background-bright: #202020;
+
+	-fx-my-element-standard: #404040;	
+
+	-fx-my-text-dark: #404040;
+	-fx-my-text-standard: #888888;
+	-fx-my-text-bright: #FFFFFF;
+	
+	-fx-my-highlight-hover-background: #404040;
+	-fx-my-highlight-hover: #888888;
+	-fx-my-highlight-selected: #0057BD;
+
+	-fx-my-warning: #E62E4C;
+
+	-fx-chart-series-default: #0057BD;
+	-fx-chart-series-default-highlite: #147DFB;
+	-fx-chart-series-dist-two: #FBA71B;
+	-fx-chart-series-dist-two-highlite: #FFBA48;
+	-fx-chart-series-dist-three: #57B757;
+	-fx-chart-series-dist-three-highlite: #84D384;
+	-fx-chart-grid: #898887;
+	-fx-chart-high-contrast: #FFFFFF;
+} */
+
+
+#pane, .root, .split-pane{
+    -fx-background-color: -fx-my-background-dark;
+}
+
+.anchor-pane {
+    -fx-background-color: -fx-my-background-dark;
+    -fx-foreground-color: -fx-my-background-dark;
+}
+
+.hbox {
+    -fx-spacing: 3;
+}
+
+.left-main-vbox {
+	-fx-border-width: 0 2 0 0; 
+	-fx-border-color: -fx-my-background-bright;
+}
+
+.signal-anchor-pane {
+	-fx-border-width: 0 0 2 0; 
+	-fx-border-color: -fx-my-background-bright;
+}
+
+.vbox {
+    -fx-spacing: 10;
+}
+
+.button-close {
+	-fx-text-fill: -fx-my-element-standard;
+	-fx-background-color: -fx-my-background-dark;
+}
+.button-close:hover {
+	-fx-background-color: -fx-my-warning;
+	-fx-text-fill: -fx-my-text-bright;
+}
+
+.button-minimize {
+	-fx-text-fill: -fx-my-element-standard;
+	-fx-background-color: -fx-my-background-dark;
+}
+.button-minimize:hover {
+	-fx-background-color: -fx-my-highlight-hover;
+	-fx-text-fill: -fx-my-text-bright;
+}
+
+.button-maximize {
+	-fx-text-fill: -fx-my-element-standard;
+	-fx-background-color: -fx-my-background-dark;
+}
+.button-maximize:hover {
+	-fx-background-color: -fx-my-highlight-hover;
+	-fx-text-fill: -fx-my-text-bright;
+}
+
+.label-symbol{
+	-fx-text-fill: -fx-my-element-standard;
+	-fx-background-color: -fx-my-background-dark;
+}
+
+.legend-label-one{
+	-fx-text-fill: -fx-chart-series-default;
+	-fx-font-weight:900;
+    	-fx-font-size: 30pt;
+	-fx-background-color: -fx-my-background-dark;
+}
+
+.legend-label-two{
+	-fx-text-fill: -fx-chart-series-dist-two;
+	-fx-font-weight:900;
+    	-fx-font-size: 30pt;
+	-fx-background-color: -fx-my-background-dark;
+}
+
+.legend-label-three{
+	-fx-text-fill: -fx-chart-series-dist-three;
+	-fx-font-weight:900;
+    	-fx-font-size: 30pt;
+	-fx-background-color: -fx-my-background-dark;
+}
+
+.legend-label-noise{
+	-fx-text-fill: #000000;
+	-fx-font-weight:900;
+    	-fx-font-size: 30pt;
+	-fx-background-color: -fx-my-background-dark;
+}
+
+.label-text{
+    -fx-text-fill: -fx-my-element-standard;
+    -fx-background-color: -fx-my-background-dark;
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-size: 18pt;
+    -fx-font-weight:900;
+}
+
+.button-trashcan{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: -fx-my-element-standard;
+    -fx-font-size: 10pt;
+    /*-fx-padding: -6px 0px 0px 2px;*/
+    -fx-background-insets: 0px;
+}
+
+.button-trashcan:hover{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: -fx-my-warning;
+}
+
+
+.button-delete{
+    -fx-background-radius: 5em;
+    -fx-border-radius: 5em;
+    -fx-border-width: 2px;
+    -fx-min-width: 15px;
+    -fx-min-height: 15px;
+    -fx-max-width: 15px;
+    -fx-max-height: 15px;
+    -fx-background-color: -fx-my-background-dark;
+    -fx-border-color: -fx-my-element-standard;
+    -fx-text-fill: -fx-my-element-standard;
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-font-weight:700;
+    -fx-padding: -6px 0px 0px 2px;
+    -fx-background-insets: 0px;
+}
+.button-delete:hover{
+     -fx-background-radius: 5em;
+    -fx-border-radius: 5em;
+    -fx-border-width: 2px;
+    -fx-min-width: 15px;
+    -fx-min-height: 15px;
+    -fx-max-width: 15px;
+    -fx-max-height: 15px;
+    -fx-background-color: -fx-my-warning;
+    -fx-border-color: -fx-my-highlight-hover;
+    -fx-text-fill: -fx-my-highlight-hover;
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-font-weight:700;
+    -fx-padding: -6px 0px 0px 2px;
+    -fx-background-insets: 0px;
+}
+
+
+
+.label{
+    -fx-text-fill: -fx-my-text-standard;
+    -fx-font-size: 11pt;
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-weight:500;
+}
+
+.input-control-label{
+    -fx-text-fill: -fx-my-text-dark;
+    -fx-background-color: transparent;
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-style: italic;
+    -fx-font-size: 8pt;
+}
+
+.input-control-text-field {
+    -fx-text-fill: -fx-my-text-standard;
+    -fx-spacing: 0px 0px 0px 0px;
+    -fx-padding: 10px 0px 0px 0px;
+    -fx-background-color: transparent , transparent , transparent;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 1 -1;
+    -fx-background-radius : 0em;
+
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-size: 11pt;
+}
+
+.input-control-text-field:focused {
+    -fx-text-fill: -fx-my-text-bright;
+    -fx-background-color: -fx-my-highlight-selected , -fx-my-highlight-selected , -fx-my-highlight-hover-background;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 1 -1;
+    -fx-background-radius : 0em;
+
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-size: 11pt;
+}
+
+.input-control-stack-pane{
+    -fx-background-color: -fx-my-background-bright;
+}
+
+.input-control-stack-pane-invalid{
+    -fx-background-color: -fx-my-warning;
+}
+
+/* Background color of the whole context menu*/
+.input-control-choice-box .context-menu { 
+    -fx-background-color: -fx-my-element-standard; 
+}
+/* Focused item background color in the list*/
+.input-control-choice-box .menu-item:focused { -fx-background-color: -fx-my-text-bright; }
+/* Text color of non-focused items in the list*/
+.input-control-choice-box .menu-item > .label { -fx-text-fill: -fx-my-text-bright; }
+/* Text color of focused item in the list*/
+.input-control-choice-box .menu-item:focused > .label { -fx-text-fill: -fx-my-element-standard; }
+
+/* Background color of the control itself*/
+.input-control-choice-box {
+  -fx-background-color: -fx-my-element-standard;
+  -fx-background-radius : 0em;
+  -fx-mark-color: -fx-my-text-bright;
+  -fx-padding: 0px 0px 0px 0px;
+  -fx-font-family: Brutal, sans-serif;
+  -fx-font-size: 11pt;
+}
+/* Selected item text color on the control itself*/
+.input-control-choice-box > .label { 
+    -fx-text-fill: -fx-my-text-bright; 
+    -fx-font-size: 10pt;
+}
+
+.input-vbox{
+    -fx-spacing: 3px;
+}
+
+.input-hbox{
+    -fx-spacing: 3px;
+}
+
+.model-flow-pane{
+    -fx-spacing: 3px;
+}
+
+.text-field {
+    -fx-text-fill: -fx-my-text-standard;
+    -fx-spacing: 0px 0px 0px 0px;
+    -fx-padding: 10px 0px 0px 0px;
+    -fx-background-color: -fx-my-text-standard , -fx-my-text-standard , -fx-my-background-bright;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 1 -1;
+    -fx-background-radius : 0em;
+}
+
+.text-field:focused {
+    -fx-text-fill: -fx-my-text-bright;
+    -fx-background-color: -fx-my-highlight-selected , -fx-my-highlight-selected , #404040;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 1 -1;
+    -fx-background-radius : 0em;
+}
+
+.label-headline2{
+    -fx-text-fill: -fx-my-text-bright;
+	-fx-background-color: -fx-my-background-bright;
+    -fx-font-size: 14pt;
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-weight:500;
+	-fx-padding: 0 0 0 15;
+}
+
+.label-headline3{
+    -fx-text-fill: -fx-my-text-bright;
+	-fx-background-color: transparent;
+    -fx-font-size: 14pt;
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-weight:500;
+
+	-fx-border-width: 0 0 2 0; 
+	-fx-border-color: -fx-my-background-bright;
+	-fx-padding: 0 0 0 15;
+}
+
+.label-headline4{
+    -fx-text-fill: -fx-my-text-standard;
+	-fx-background-color: transparent;
+    -fx-font-size: 12pt;
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-weight:500;
+
+	-fx-border-width: 0 0 0 0; 
+	-fx-border-color: -fx-my-background-bright;
+	-fx-padding: 0 0 0 5;
+}
+
+.default-colornoise.chart-series-line { 
+	-fx-stroke: -fx-chart-series-noise;
+	-fx-stroke-width: 2;
+        -fx-stroke-dash-array: 2 12 12 2;
+}
+
+.default-color0.chart-series-line { -fx-stroke: -fx-chart-series-default; }
+.default-color0dash.chart-series-line { 
+	-fx-stroke: -fx-chart-series-default-highlite;
+	-fx-stroke-width: 2;
+        -fx-stroke-dash-array: 2 12 12 2;
+}
+
+.default-color1.chart-series-line { -fx-stroke: -fx-chart-series-dist-two; }
+.default-color1dash.chart-series-line { 
+	-fx-stroke: -fx-chart-series-dist-two-highlite;
+	-fx-stroke-width: 2;
+        -fx-stroke-dash-array: 2 12 12 2;
+}
+
+.default-color2.chart-series-line { -fx-stroke: -fx-chart-series-dist-three; }
+.default-color2dash.chart-series-line { 
+	-fx-stroke: -fx-chart-series-dist-three-highlite;
+	-fx-stroke-width: 2;
+        -fx-stroke-dash-array: 2 12 12 2;
+}
+
+.chart-vertical-zero-line {
+    -fx-stroke: -fx-chart-high-contrast;
+}
+.chart-horizontal-zero-line {
+    -fx-stroke: -fx-chart-high-contrast;
+}
+
+.chart-plot-background {
+    -fx-background-color: -fx-my-background-bright; /* Bright background inactive*/
+    -fx-foreground-color: -fx-chart-high-contrast;
+    -fx-stroke: -fx-chart-high-contrast;
+} 
+
+.chart-vertical-grid-lines {
+    -fx-stroke: -fx-chart-grid;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: -fx-chart-grid;
+}
+.chart-alternative-row-fill {
+    -fx-fill: transparent;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 0;
+}
+
+.axis {
+	-fx-stroke: -fx-chart-high-contrast;
+	-fx-fill: -fx-chart-high-contrast;
+    -fx-font-size: 1.4em;    
+    -fx-tick-label-fill: -fx-chart-high-contrast;
+    -fx-font-family: Brutal, sans-serif;
+    -fx-tick-length: 0;
+    -fx-minor-tick-length: 0;
+}
+
+.background {
+    -fx-background-color: -fx-my-background-dark;
+    -fx-foreground-color: -fx-my-text-bright;
+}
+
+.button {
+    -fx-padding: 5 22 5 22;   
+    -fx-border-color: -fx-my-element-standard;
+    -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-background-color: -fx-my-background-dark; /*derive(#353434,20%);*/
+    -fx-font-family: Brutal, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-font-weight:400;
+    -fx-text-fill: -fx-my-element-standard;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.button:hover {
+    /*-fx-background-color: #3a3a3a;*/
+    -fx-border-color: -fx-my-highlight-hover;
+    -fx-text-fill: -fx-my-highlight-hover;
+}
+
+/*.button:pressed, .button:default:hover:pressed {
+  -fx-background-color: #bdbcbc;
+  -fx-text-fill: black;
+}*/
+
+/*.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #353434;
+    -fx-text-fill: white;
+}*/
+
+/*.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color,30%);
+}
+*/
+/*.text-area .content {
+	-fx-background-color: -fx-my-background-dark;
+}*/
+
+.slider {
+    -fx-background: -fx-my-background-dark;
+    -fx-background-color: -fx-my-background-dark;
+}
+
+.slider .track{
+    -fx-background-color: transparent , transparent , -fx-my-background-bright;
+    -fx-border-color: -fx-my-background-dark;
+}
+
+.slider .thumb {
+    -fx-background-color: -fx-my-highlight-hover;
+    -fx-background-radius : 2.0em;
+}
+
+.slider .axis {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-my-background-bright;
+    -fx-foreground-color: -fx-my-background-bright;
+}
+
+.scroll-pane {
+    -fx-background: -fx-my-background-dark;
+    -fx-background-color: -fx-my-background-dark;
+}
+
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color :-fx-my-background-dark;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 0.0 10.0 0.0;
+
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :-fx-my-background-dark;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape : " ";    
+    -fx-padding :0.0em 0.0;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: -fx-my-background-dark;
+    -fx-border-color: -fx-my-background-dark;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-my-highlight-hover;
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: -fx-my-background-dark;
+}
+
+
+
+/* Background color of the whole context menu*/
+.choice-box .context-menu { -fx-background-color: -fx-my-element-standard; }
+/* Focused item background color in the list*/
+.choice-box .menu-item:focused { -fx-background-color: -fx-my-highlight-hover; }
+/* Text color of non-focused items in the list*/
+.choice-box .menu-item > .label { -fx-text-fill: -fx-my-highlight-hover; }
+/* Text color of focused item in the list*/
+.choice-box .menu-item:focused > .label { -fx-text-fill: -fx-my-text-dark; }
+
+/* Background color of the control itself*/
+.choice-box {
+  -fx-background-color: -fx-my-element-standard;
+  -fx-background-radius : 0em;
+  -fx-mark-color: -fx-my-text-bright;
+}
+/* Selected item text color on the control itself*/
+.choice-box > .label { 
+    -fx-text-fill: -fx-my-text-bright; 
+}
+
+/* Background color of the whole context menu*/
+.small-choice-box .context-menu { -fx-background-color: -fx-my-highlight-hover; }
+/* Focused item background color in the list*/
+.small-choice-box .menu-item:focused { -fx-background-color: -fx-my-highlight-hover; }
+/* Text color of non-focused items in the list*/
+.small-choice-box .menu-item > .label { -fx-text-fill: -fx-my-highlight-hover; }
+/* Text color of focused item in the list*/
+.small-choice-box .menu-item:focused > .label { -fx-text-fill: -fx-my-text-dark; }
+
+/* Background color of the control itself*/
+.small-choice-box {
+  -fx-background-color: -fx-my-highlight-hover-background;
+  -fx-background-radius : 0em;
+  -fx-mark-color: -fx-my-text-bright;
+  -fx-padding: -4 -4;
+}
+/* Selected item text color on the control itself*/
+.small-choice-box > .label { 
+    -fx-text-fill: -fx-my-text-bright; 
+    -fx-font-size: 10pt;
+}
+
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+	-fx-border-color: transparent
+}
+
+.tab-pane 
+{
+/*-fx-skin: "com.sun.javafx.scene.control.skin.TabPaneSkin";*/
+/* -fx-tab-min-width: 4.583em;  55 */
+/* -fx-tab-max-width: 4.583em; 55 */
+-fx-tab-min-height: 30px; /* 24 */
+-fx-tab-max-height: 30px; /* 24 */
+}
+.tab .tab-label 
+{
+/*-fx-skin: "com.sun.javafx.scene.control.skin.LabelSkin";*/
+-fx-background-color: transparent;    
+-fx-alignment: CENTER;
+
+-fx-text-fill: -fx-my-text-bright;
+-fx-font-size: 14pt;
+-fx-font-family: Brutal, sans-serif;
+-fx-font-weight:500;
+
+}
+/*
+.tab *.tab-label Text {
+/*-fx-effect: dropshadow(two-pass-box , rgba(255, 255, 255, 0.4), 1, 0.0 , 0, 1);*/
+}*/
+.tab-content-area 
+{
+-fx-background-color: transparent;
+-fx-padding: 0.0em; /* 0 */
+/* -fx-opacity: -fx-disabled-opacity;*/
+}
+.tab 
+{
+/* This is how it is done in Button, but the -1 inset caused a white line  */
+/* to appear beneath the tab, which looks bad, so it's taken out below.    */
+/*    -fx-background-color: 
+-fx-shadow-highlight-color, -fx-tab-border-color, -fx-inner-border, -fx-body-color;
+-fx-background-radius: 5 5 0 0, 5 5 0 0, 4 4 0 0, 3 3 0 0;
+-fx-background-insets: 0 0 -1 0, 0, 1, 2;*/
+
+-fx-background-insets: 0, 1, 2;
+-fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+
+-fx-padding: 0.083333em 0.5em 0.083333em 0.5em; /* 1 6 1 6 */
+/*    -fx-text-fill: -fx-text-base-color;*/
+}
+.tab:top 
+{
+/*-fx-background-color: -fx-tab-border-color, -fx-inner-border, -fx-body-color;*/
+-fx-background-color: transparent, transparent, -fx-my-background-dark;
+-fx-background-insets: 0, 0 0 2 0;
+-fx-background-radius: 0 0 0 0, 0 0 0 0;
+}
+
+.tab:top:hover 
+{
+/*-fx-background-color: -fx-tab-border-color, -fx-inner-border, -fx-body-color;*/
+-fx-background-color: transparent, transparent, -fx-my-highlight-hover-background;
+-fx-background-insets: 0, 0 0 2 0;
+-fx-background-radius: 0 0 0 0, 0 0 0 0;
+}
+
+.tab:right 
+{
+/*-fx-background-color: -fx-tab-border-color, -fx-inner-border-bottomup, -fx-body-color-bottomup;*/
+-fx-background-color: red, green, brown;
+}
+.tab:bottom 
+{
+/*-fx-background-color: -fx-tab-border-color, -fx-inner-border-bottomup, -fx-body-color-bottomup;*/
+-fx-background-color: red, green, brown;
+}
+.tab:left 
+{
+/*-fx-background-color: -fx-tab-border-color, -fx-inner-border-bottomup, -fx-body-color-bottomup;*/
+-fx-background-color: red, green, brown;
+}
+.tab:hover 
+{
+-fx-color: #404040;
+}
+.tab:selected 
+{
+/*    -fx-background-color: white;*/
+/*    -fx-background-color: -fx-tab-border-color, -fx-inner-border, -fx-body-color;
+-fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+-fx-background-insets: 0, 1 1 0 1, 2 2 0 2;*/
+-fx-background-color: -fx-my-highlight-selected, -fx-my-background-bright;
+-fx-background-insets: 0, 0 0 3 0;
+-fx-background-radius: 0 0 0 0, 0 0 0 0;
+}
+.tab:disabled 
+{
+/*-fx-opacity: -fx-disabled-opacity;*/
+}
+.tab:disabled:hover 
+{
+/*-fx-color: -fx-base;
+-fx-opacity: -fx-disabled-opacity;*/
+}
+.tab-pane *.tab-header-background 
+{
+/*-fx-background-color: -fx-outer-border, -fx-inner-border, derive(-fx-color, -20%);
+-fx-effect: innershadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);*/
+-fx-background-color: -fx-my-background-bright, transparent, -fx-my-background-dark;
+-fx-background-insets: 0, 0 0 2 0;
+/*-fx-effect: innershadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);*/
+}
+/*.tab-pane *.tab-header-area {*/
+/* I would like to use -fx-tab-border-color here, but for some reason it */
+/* just isn't the correct color, even though it works in :top above */
+/*    -fx-background-color: -fx-tab-border-color, lightgray;*/
+/*}*/
+.tab-pane:top *.tab-header-area 
+{
+-fx-background-insets: 0, 0 0 1 0;
+-fx-padding: 0 0 0 0; /* 5 2 0 10 */
+}
+.tab-pane:bottom *.tab-header-area 
+{
+-fx-background-insets: 0, 1 0 0 0;
+-fx-padding: 0 0 0; /* 0 2 5 0 */
+}
+.tab-pane:left *.tab-header-area 
+{
+-fx-background-insets: 0, 0 1 0 0;
+-fx-padding: 0 0 0 0; /* 10 0 2 5 */
+}
+.tab-pane:right *.tab-header-area 
+{
+-fx-background-insets: 0, 0 0 0 1;
+-fx-padding: 0 0 0 0; /* 10 5 2 0 */
+}
+.tab-pane .headers-region 
+{
+/*-fx-effect: dropshadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0, 0);*/
+}
+/* TODO: scaling the shape seems to make it way too large */
+.tab-close-button 
+{
+-fx-background-color: -fx-mark-color;
+-fx-shape: "M 0,0 H1 L 4,3 7,0 H8 V1 L 5,4 8,7 V8 H7 L 4,5 1,8 H0 V7 L 3,4 0,1 Z";
+-fx-scale-shape: false;
+-fx-effect: dropshadow(two-pass-box , rgba(255, 255, 255, 0.4), 1, 0.0 , 0, 1);
+}
+.tab-close-button:hover 
+{
+-fx-background-color: derive(-fx-mark-color, -30%);
+}
+
+
+.vertical-marker{
+	-fx-stroke-width: 2;
+	/*-fx-stroke: green;*/
+}
+
+
+.check-box .box {
+
+-fx-background-color: transparent;
+-fx-border-color: -fx-my-background-bright;
+-fx-border-radius:0; 
+-fx-border-width: 2;
+}
+
+.check-box:selected .mark {
+-fx-background-color: -fx-my-highlight-selected;
+}
+.check-box:selected .box {
+-fx-background-color: transparent;
+-fx-border-color: -fx-my-highlight-selected;
+}
+
+.check-box-dist2:selected .mark {
+-fx-background-color: -fx-chart-series-dist-two;
+}
+.check-box-dist2:selected .box {
+-fx-background-color: transparent;
+-fx-border-color: -fx-chart-series-dist-two;
+}
+
+.check-box-dist3:selected .mark {
+-fx-background-color: -fx-chart-series-dist-three;
+}
+.check-box-dist3:selected .box {
+-fx-background-color: transparent;
+-fx-border-color: -fx-chart-series-dist-three;
+}
+
+.check-box:hover .box {
+	-fx-background-color: transparent;
+	-fx-border-color: -fx-my-highlight-hover;
+}
+
+.check-box:hover .mark {
+	-fx-background-color: -fx-my-highlight-hover;
+}

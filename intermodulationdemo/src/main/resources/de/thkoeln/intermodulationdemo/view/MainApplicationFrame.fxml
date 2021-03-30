@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane fx:controller="de.thkoeln.intermodulationdemo.MainApplicationFrameController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+   		<AnchorPane xmlns:fx="http://javafx.com/fxml" prefHeight="30" minHeight="30" maxHeight="30" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   			<HBox fx:id="titleBarHBoxSymbol" styleClass="title-bar-hbox-symbol" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            	<children>
+            	</children>
+            </HBox>
+            <HBox fx:id="titleBarHBox" styleClass="title-bar-hbox" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+            </children>
+            </HBox>
+    	</AnchorPane>
+      <HBox styleClass="main-hbox" layoutX="216.0" layoutY="120.0" prefHeight="720" prefWidth="1280" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <VBox styleClass="left-main-vbox" minWidth="400.0" prefWidth="400.0">
+               <children>
+                  <AnchorPane styleClass="signal-anchor-pane" prefHeight="380.0" prefWidth="400.0">
+                  	<fx:include source="SignalPane.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </AnchorPane>
+                  <AnchorPane prefHeight="340.0" prefWidth="400.0">
+                  	<fx:include source="ModelPane.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <TabPane prefHeight="720" prefWidth="1520" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Output">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650" prefWidth="Infinity">
+                           <children>
+                              <VBox minWidth="350.0" prefWidth="Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              	<children>
+                              	  <AnchorPane minHeight ="310.0"  prefHeight="490.0" prefWidth="Infinity">
+                                    	<fx:include source="VoutPane.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </AnchorPane>
+                                    <AnchorPane minHeight ="310.0" prefHeight="490.0" prefWidth="Infinity">
+                                    	<fx:include source="SpectrumPane.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </AnchorPane>
+                              	</children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Dynamic">
+                  <content>
+                    <AnchorPane minHeight="620.0" prefHeight="980" prefWidth="880.0">
+                           <children>
+                              <AnchorPane minHeight ="620.0" prefHeight="980" prefWidth="Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <fx:include source="SweepPane.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
