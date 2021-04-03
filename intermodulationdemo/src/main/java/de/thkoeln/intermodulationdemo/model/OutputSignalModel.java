@@ -1,3 +1,7 @@
+/**
+ * Output Signal Model
+ * author: Thomas Stein
+ */
 package de.thkoeln.intermodulationdemo.model;
 
 import java.util.ArrayList;
