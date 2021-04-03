@@ -1,3 +1,8 @@
+/**
+ * Controller for the model-pane
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo;
 
 import java.net.URL;
