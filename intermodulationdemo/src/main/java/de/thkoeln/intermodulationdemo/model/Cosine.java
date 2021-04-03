@@ -1,3 +1,8 @@
+/**
+ * Representation of a cosine signal
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model;
 
 public class Cosine {
