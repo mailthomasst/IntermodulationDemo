@@ -1,9 +1,12 @@
+/**
+ * Representation of a DSP signal
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model;
 
 import java.util.List;
-
 import org.apache.commons.math3.complex.Complex;
-
 import de.thkoeln.intermodulationdemo.util.Utility;
 
 public class DSPSignal {
