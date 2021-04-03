@@ -1,3 +1,8 @@
+/**
+ * Class for modeling the amplification process
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model;
 
 import java.util.ArrayList;
