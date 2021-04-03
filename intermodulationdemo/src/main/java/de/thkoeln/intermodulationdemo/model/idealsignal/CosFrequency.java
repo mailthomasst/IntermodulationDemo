@@ -1,3 +1,8 @@
+/**
+ * Representation ideal Cosine Signal
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model.idealsignal;
 
 public class CosFrequency {
