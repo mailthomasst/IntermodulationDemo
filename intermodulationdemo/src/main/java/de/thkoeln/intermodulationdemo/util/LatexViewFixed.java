@@ -43,6 +43,7 @@ import java.util.function.BiPredicate;
  * The {@code LatexViewFixed} is a JavaFX {@code Node} used for rendering LaTeX formulas
  *
  * @author Egor Makarenko
+ * changes by Thomas Stein
  */
 @DefaultProperty("formula")
 public class LatexViewFixed extends Canvas {
