@@ -1,3 +1,8 @@
+/**
+ * Amplifier interface
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model;
 
 import java.util.Set;
