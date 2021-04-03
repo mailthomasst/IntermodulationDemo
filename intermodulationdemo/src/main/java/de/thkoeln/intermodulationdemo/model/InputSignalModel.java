@@ -1,10 +1,14 @@
+/**
+ * Input Signal Model
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import de.thkoeln.intermodulationdemo.model.idealsignal.CosFrequency;
 import de.thkoeln.intermodulationdemo.model.idealsignal.CosSignal;
 
