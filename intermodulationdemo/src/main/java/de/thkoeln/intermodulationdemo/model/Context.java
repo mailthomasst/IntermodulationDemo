@@ -1,3 +1,7 @@
+/**
+ * Context Class for static access to recources
+ * author: Thomas Stein
+ */
 package de.thkoeln.intermodulationdemo.model;
 
 public class Context {
