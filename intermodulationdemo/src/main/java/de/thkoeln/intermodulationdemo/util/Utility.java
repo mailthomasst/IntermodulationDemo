@@ -7,6 +7,12 @@ import de.thkoeln.intermodulationdemo.model.idealsignal.CosFrequency;
 import de.thkoeln.intermodulationdemo.model.idealsignal.CosSignal;
 import javafx.util.StringConverter;
 
+/**
+ * Utility Class
+ *
+ * @author Thomas Stein
+ */
+
 public class Utility {
 	public static double vtodBmV(double volt) {
 		return 20 * Math.log10(volt / 0.001);
