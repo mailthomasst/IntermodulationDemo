@@ -12,6 +12,12 @@ import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.shape.Line;
 
+/**
+ * Customisation of the LineChart
+ *
+ * @author -
+ */
+
 public class LineChartWithMarkers<X,Y> extends LineChart {
 
     private ObservableList<Data<X, Y>> horizontalMarkers;
