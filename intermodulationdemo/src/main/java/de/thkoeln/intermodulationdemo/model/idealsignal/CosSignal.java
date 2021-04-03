@@ -1,3 +1,8 @@
+/**
+ * Representation of a superposition of cosine signals
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model.idealsignal;
 
 import java.util.HashSet;
