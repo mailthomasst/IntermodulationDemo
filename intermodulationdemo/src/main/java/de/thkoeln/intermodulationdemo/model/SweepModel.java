@@ -1,8 +1,11 @@
+/**
+ * Sweep Model Class
+ * author: Thomas Stein
+ */
 package de.thkoeln.intermodulationdemo.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import de.thkoeln.intermodulationdemo.model.graph.FrequencyDomainGraph;
 import de.thkoeln.intermodulationdemo.util.Utility;
 
