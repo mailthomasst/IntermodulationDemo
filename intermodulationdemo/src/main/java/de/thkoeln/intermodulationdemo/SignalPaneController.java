@@ -1,3 +1,8 @@
+/**
+ * Controller for the signal-pane
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo;
 
 
