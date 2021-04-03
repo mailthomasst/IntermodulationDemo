@@ -5,6 +5,12 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
 
+/**
+ * JavaFX Graph for the Time Domain
+ *
+ * @author Thomas Stein
+ */
+
 public class JFXTimeDomainGraph {
 	private TimeDomainGraph tdg;
 	private XYChart<Number, Number> chart;
