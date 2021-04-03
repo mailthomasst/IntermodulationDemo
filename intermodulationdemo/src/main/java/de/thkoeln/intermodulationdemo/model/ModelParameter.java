@@ -1,3 +1,8 @@
+/**
+ * Model Parameter Class
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model;
 
 public class ModelParameter {
