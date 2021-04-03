@@ -1,7 +1,11 @@
+/**
+ * Interface for a simple Amplifier
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model;
 
 import java.util.Set;
-
 import org.apache.commons.math3.complex.Complex;
 
 public interface SimpleAmplifier {
