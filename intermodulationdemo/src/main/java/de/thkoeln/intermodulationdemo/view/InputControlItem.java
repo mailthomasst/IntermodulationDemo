@@ -23,6 +23,12 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
 
+/**
+ * Custom JavaFX Control for Textfields
+ *
+ * @author Thomas Stein
+ */
+
 public class InputControlItem {
 	private StackPane textFieldStackPane;
 	private TextField textField;
