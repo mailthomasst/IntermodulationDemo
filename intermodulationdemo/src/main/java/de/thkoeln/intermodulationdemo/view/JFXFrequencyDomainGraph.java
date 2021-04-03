@@ -11,6 +11,12 @@ import javafx.scene.chart.XYChart.Data;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
+/**
+ * JavaFX Graph for the Frequency Domain
+ *
+ * @author Thomas Stein
+ */
+
 public class JFXFrequencyDomainGraph {
 	private FrequencyDomainGraph fdg;
 	private XYChart<Number, Number> chart;
