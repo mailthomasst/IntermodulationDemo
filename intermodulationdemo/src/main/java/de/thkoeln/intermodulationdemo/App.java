@@ -1,3 +1,8 @@
+/**
+ * Launcher for the Application
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo;
 
 import javafx.application.Application;
