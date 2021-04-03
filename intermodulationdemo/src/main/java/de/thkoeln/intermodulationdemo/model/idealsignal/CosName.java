@@ -1,3 +1,8 @@
+/**
+ * Ideal Cosine Signal Name
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model.idealsignal;
 
 import java.util.ArrayList;
