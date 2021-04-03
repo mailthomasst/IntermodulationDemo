@@ -10,6 +10,12 @@ import java.util.Properties;
 
 import de.thkoeln.intermodulationdemo.App;
 
+/**
+ * Static Property loader
+ *
+ * @author Thomas Stein
+ */
+
 public class PropertyLoader {
 	
     private final static PropertyLoader instance = new PropertyLoader();
