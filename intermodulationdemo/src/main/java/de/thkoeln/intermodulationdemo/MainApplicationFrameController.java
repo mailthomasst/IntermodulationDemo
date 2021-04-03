@@ -1,3 +1,8 @@
+/**
+ * Controller for the main Application Frame
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo;
 
 import java.net.URL;
