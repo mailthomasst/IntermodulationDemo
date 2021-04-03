@@ -1,3 +1,8 @@
+/**
+ * Representation of a frequency domain graph
+ * author: Thomas Stein
+ */
+
 package de.thkoeln.intermodulationdemo.model.graph;
 
 import de.thkoeln.intermodulationdemo.model.DSPSignal;
