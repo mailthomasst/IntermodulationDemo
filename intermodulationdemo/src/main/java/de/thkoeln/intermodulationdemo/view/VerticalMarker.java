@@ -3,6 +3,12 @@ package de.thkoeln.intermodulationdemo.view;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.paint.Color;
 
+/**
+ * Vertical Markers for the line Chart
+ *
+ * @author -
+ */
+
 public class VerticalMarker {
 	private Data<Number,Number> markerData, labelData;
 	private String text;
