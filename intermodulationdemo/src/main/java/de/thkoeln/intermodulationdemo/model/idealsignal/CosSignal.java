@@ -65,6 +65,17 @@ public class CosSignal {
 		return returnSet;
 	}
 	
+	public void squareTheFactors() {
+
+	}
+	
+	public void signalToPower(double load) {
+		for (CosFrequency f1 : this.freqSet) {
+			f1.setFactor(((f1.getFactor()/Math.sqrt(2))*(f1.getFactor()/Math.sqrt(2)))/load);
+		}
+	}
+	
+	
 	public CosSignal power(int power) {
 		CosSignal returnSignal = new CosSignal();
 		returnSignal.copy(this);

@@ -8,8 +8,10 @@ import de.thkoeln.intermodulationdemo.model.idealsignal.CosFrequency;
 import de.thkoeln.intermodulationdemo.model.idealsignal.CosSignal;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 /**
  * JavaFX Graph for the Frequency Domain
@@ -40,9 +42,14 @@ public class JFXFrequencyDomainGraph {
 			plotPoint(xSeries[i],ySeries[i], series);
 		}
 		chart.getData().add(series);
+		series.getNode().getStyleClass().add("default-color0");
 		for (XYChart.Data<Number, Number> data : series.getData()) {
 		    StackPane stackPane = (StackPane) data.getNode();
-		    stackPane.setVisible(false);
+		    //stackPane.setVisible(false);
+		    data.getNode().getStyleClass().add("default-color0");
+		    Tooltip myTT = new Tooltip(((int)(100.0*data.getYValue().doubleValue())/100.0) + "dBm");
+		    myTT.setShowDelay(Duration.millis(10));
+        	Tooltip.install(data.getNode(), myTT);
 		}
 	}
 	

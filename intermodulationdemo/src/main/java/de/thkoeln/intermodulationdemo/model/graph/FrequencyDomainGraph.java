@@ -32,10 +32,10 @@ public class FrequencyDomainGraph {
 	}
 	
 	public void refreshSignal(DSPSignal signal) {
-		yMax = 20.0*Math.log10(signal.getSignal()[0].getReal()/(0.001)); //signal.getSignal()[0].getReal();
-		yMin = 20.0*Math.log10(signal.getSignal()[0].getReal()/(0.001)); //signal.getSignal()[0].getReal();
+		yMax = 10.0*Math.log10(signal.getSignal()[0].getReal()/(0.001)); //signal.getSignal()[0].getReal();
+		yMin = 10.0*Math.log10(signal.getSignal()[0].getReal()/(0.001)); //signal.getSignal()[0].getReal();
 		for (int i = 0; i < samples/4; i++) {
-			ySeries[i]=20.0*Math.log10(signal.getSignal()[i].getReal()/(0.001));
+			ySeries[i]=10.0*Math.log10(signal.getSignal()[i].getReal()/(0.001));
 			xSeries[i]=((double)i)*signal.getSamplingRate()/((samples-1)*2);
 			if (ySeries[i] > yMax) {
 				yMax = ySeries[i];
@@ -46,7 +46,10 @@ public class FrequencyDomainGraph {
 	}
 	
 	public double getUpperBound() {
-		return (((int)yMax)/5)*5+5.0;
+		if (((((int)yMax)/20)*20+20.0) < 20) {
+			return 20.0;
+		}
+		return (((int)yMax)/20)*20+20.0;
 	}
 	
 	public double getLowerBound() {

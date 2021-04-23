@@ -33,8 +33,8 @@ public class InputSignalModel {
 	}
 	
 	public void loadDefault() {
-		addCosine(10.0, 0.001);//TODO (auslagern)
-		addCosine(11.0, 0.001);//TODO (auslagern)
+		addCosine(10.0, 0.0001);//TODO (auslagern)
+		addCosine(11.0, 0.0001);//TODO (auslagern)
 	}
 	
 	public double getGain() {
@@ -95,7 +95,7 @@ public class InputSignalModel {
 				lowestFrequency = cs.getFrequency();
 			}
 		}
-		int minimalSamplingRate = (int)(128 * (lowestFrequency/10));
+		int minimalSamplingRate = (int)(256 * (lowestFrequency/10));
 		int newSamplingRate = samplingRate;
 		for (int i = 8;i < 100; i++) {
 			if(Math.pow(2,i) >= minimalSamplingRate) {

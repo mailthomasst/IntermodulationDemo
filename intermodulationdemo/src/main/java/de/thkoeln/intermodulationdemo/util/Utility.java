@@ -14,6 +14,14 @@ import javafx.util.StringConverter;
  */
 
 public class Utility {
+	
+	public static double dBmtoV(double pdBm, double load) {
+		double power = 0.001*Math.pow(10, (pdBm/10));
+		double vRms = Math.sqrt(power*50);
+		return vRms * Math.sqrt(2);
+	}
+	
+	
 	public static double vtodBmV(double volt) {
 		return 20 * Math.log10(volt / 0.001);
 	}
@@ -242,7 +250,7 @@ public class Utility {
 		Complex signal[] = outputSignal.getSignal();
 		double factor = 2*samples/(double)(samplingRate);
 		for (int i = 0; i < samples; i++) {
-			signal[i] = new Complex(0.00000000001);
+			signal[i] = new Complex(1e-20);
 		}
 		for (CosFrequency cos : cs.getFreqSet()) {
 			int index = (int) (cos.getFrequency()*factor);

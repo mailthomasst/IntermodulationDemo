@@ -28,10 +28,12 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 public class SweepPaneController implements Initializable {
 	
@@ -57,7 +59,7 @@ public class SweepPaneController implements Initializable {
 	@Override
 	public void initialize(final URL url, final  ResourceBundle rb) {
 		lineChart.setAnimated(false);
-		startVoltage = Utility.dBmVtoV(PropertyLoader.getDoubleProp("def.SweepStart"));
+		startVoltage = PropertyLoader.getDoubleProp("def.SweepStart");
 		targetDb = PropertyLoader.getIntProp("def.SweepDelta");
 		
 		sweep = new SweepModel(Context.getInstance().getAmplificationModel().getAmp(), startVoltage, targetDb);
@@ -79,7 +81,7 @@ public class SweepPaneController implements Initializable {
 		Label startLabel = new Label("Start:");
 		startLabel.setPrefWidth(50);
 		startHBox.getChildren().add(startLabel);
-		InputControlItem startInput = new InputControlItem("Start", "dBmV", -200.0, 200.0, Utility.vtodBmV(startVoltage) ,false);
+		InputControlItem startInput = new InputControlItem("Start", "dBm", -200.0, 200.0, startVoltage ,false);
 		startHBox.getChildren().add(startInput.getTextFieldStackPane());
 		
 		Label endLabel = new Label("Delta:");
@@ -171,17 +173,17 @@ public class SweepPaneController implements Initializable {
 		
 		xAxis = new NumberAxis();
 		yAxis = new NumberAxis();
-		xAxis.setLabel("In / dBmV");
+		xAxis.setLabel("In / dBm @ 50 Ohm");
 		xAxis.setSide(Side.BOTTOM);
-		yAxis.setLabel("Out /dBmV");
+		yAxis.setLabel("Out /dBm");
 		yAxis.setSide(Side.LEFT);
 		
 		xAxis.setAutoRanging(false);
-		((NumberAxis)xAxis).setLowerBound(Utility.vtodBmV(startVoltage));
-		((NumberAxis)xAxis).setUpperBound(Utility.vtodBmV(startVoltage)+targetDb);
+		((NumberAxis)xAxis).setLowerBound(startVoltage);
+		((NumberAxis)xAxis).setUpperBound(startVoltage+targetDb);
 		yAxis.setAutoRanging(false);
-		((NumberAxis)yAxis).setLowerBound(Utility.vtodBmV(startVoltage));
-		((NumberAxis)yAxis).setUpperBound(Utility.vtodBmV(startVoltage)+targetDb);
+		((NumberAxis)yAxis).setLowerBound(startVoltage);
+		((NumberAxis)yAxis).setUpperBound(startVoltage+targetDb);
 		
 		lineChart1 = new LineChart<Number,Number>(xAxis,yAxis);
 		lineChart1.setAnimated(false);
@@ -198,13 +200,13 @@ public class SweepPaneController implements Initializable {
 	}
 	
 	public void manualSweep(double startDBmV, double targetDb) {
-		this.startVoltage = Utility.dBmVtoV(startDBmV);
+		this.startVoltage = startDBmV;
 		this.targetDb = (int)targetDb;
 		sweep = new SweepModel(Context.getInstance().getAmplificationModel().getAmp(),this.startVoltage, this.targetDb);
-		((NumberAxis)xAxis).setLowerBound(Utility.vtodBmV(startVoltage));
-		((NumberAxis)xAxis).setUpperBound(Utility.vtodBmV(startVoltage)+targetDb);
-		((NumberAxis)yAxis).setLowerBound(Utility.vtodBmV(startVoltage));
-		((NumberAxis)yAxis).setUpperBound(Utility.vtodBmV(startVoltage)+targetDb);
+		((NumberAxis)xAxis).setLowerBound(startVoltage);
+		((NumberAxis)xAxis).setUpperBound(startVoltage+targetDb);
+		((NumberAxis)yAxis).setLowerBound(startVoltage);
+		((NumberAxis)yAxis).setUpperBound(startVoltage+targetDb);
 		refreshSweep();
 	}
 	
@@ -263,6 +265,40 @@ public class SweepPaneController implements Initializable {
 		    stackPane.setVisible(false);
 		}
 		
+		final XYChart.Series<Number, Number> seriesOIP2 = new XYChart.Series<Number, Number>();
+		seriesOIP2.getData().add(new XYChart.Data<Number, Number>(sweep.getOip2x(),sweep.getOip2y()));
+		lineChart1.getData().add(seriesOIP2);
+		for (XYChart.Data<Number, Number> data : seriesOIP2.getData()) {
+		    //StackPane stackPane = (StackPane) data.getNode();
+		    //stackPane.setVisible(false);
+		}
+        for (XYChart.Data<Number, Number> d : seriesOIP2.getData()) {
+        	Tooltip myTT = new Tooltip("OIP2: " + ((int)(100.0*d.getYValue().doubleValue())/100.0) + "dBm");
+        	myTT.setShowDelay(Duration.millis(10));
+        	Tooltip.install(d.getNode(), myTT);
+             //Adding class on hover
+             d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+             //Removing class on exit
+             d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
+		
+		final XYChart.Series<Number, Number> seriesOIP3 = new XYChart.Series<Number, Number>();
+		seriesOIP3.getData().add(new XYChart.Data<Number, Number>(sweep.getOip3x(),sweep.getOip3y()));
+		lineChart1.getData().add(seriesOIP3);
+		for (XYChart.Data<Number, Number> data : seriesOIP3.getData()) {
+		    //StackPane stackPane = (StackPane) data.getNode();
+		    //stackPane.setVisible(false);
+		}
+        for (XYChart.Data<Number, Number> d : seriesOIP3.getData()) {
+        	Tooltip myTT = new Tooltip("OIP3: " + ((int)(100.0*d.getYValue().doubleValue())/100.0) + "dBm");
+        	myTT.setShowDelay(Duration.millis(10));
+        	Tooltip.install(d.getNode(), myTT);
+             //Adding class on hover
+             d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+             //Removing class on exit
+             d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
+		
 		//Ideal Lines
 		if(checkBox.isSelected()) {
 			final XYChart.Series<Number, Number> series4 = new XYChart.Series<Number, Number>();		
@@ -305,6 +341,8 @@ public class SweepPaneController implements Initializable {
 			series5.getNode().getStyleClass().add("default-color1dash");
 			series6.getNode().getStyleClass().add("default-color2dash");
 		}
+		seriesOIP2.getNode().getStyleClass().add("default-color1point");
+		seriesOIP3.getNode().getStyleClass().add("default-color2point");
 		series7.getNode().getStyleClass().add("default-colornoise");
 	}
 }

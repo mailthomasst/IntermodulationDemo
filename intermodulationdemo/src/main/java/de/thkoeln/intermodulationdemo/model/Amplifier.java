@@ -5,6 +5,7 @@
 
 package de.thkoeln.intermodulationdemo.model;
 
+import java.util.List;
 import java.util.Set;
 
 public interface Amplifier {
@@ -20,5 +21,6 @@ public interface Amplifier {
 	public String getName();
 	public String getGraphic();
 	public DSPSignal getAmplifiedSpectrum(DSPSignal inputSignal);
+	public DSPSignal getAmplifiedSpectrum(List<Cosine> inputSignal);
 	public double getNoiseLevel();
 }

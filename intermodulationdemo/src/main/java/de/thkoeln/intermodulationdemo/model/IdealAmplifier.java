@@ -56,20 +56,20 @@ public class IdealAmplifier implements Amplifier {
 		this.outputSignal = outputSignal;
 		this.listeners = new HashSet<ChangeListener>();
 		this.modelParameters = new HashSet<ModelParameter>();
-		this.I_s = new ModelParameter("I_s", "A", i_s, 10e-15,10e0);
+		this.I_s = new ModelParameter("I_s", "A", i_s, 10e-15,10e0, 3);
 		this.modelParameters.add(this.I_s);
-		this.V_T = new ModelParameter("V_T", "V", v_T, 10e-6,10e0);
+		this.V_T = new ModelParameter("V_T", "V", v_T, 10e-6,10e0, 3);
 		this.modelParameters.add(this.V_T);
-		this.R_BE = new ModelParameter("r_{BE}", "\u03A9", r_BE, 10e-3,10e9);
+		this.R_BE = new ModelParameter("r_{BE}", "\u03A9", r_BE, 10e-3,10e9, 3);
 		this.modelParameters.add(this.R_BE);
 		this.R_C = new ModelParameter("R'_{C}", "\u03A9", r_C, 10e-3,10e9);
 		this.modelParameters.add(this.R_C);
-		this.V_BE = new ModelParameter("V_{BE}", "V", v_BE, 10e-3,10e3);
+		this.V_BE = new ModelParameter("V_{BE}", "V", v_BE, 10e-3,10e3, 3);
 		this.modelParameters.add(this.V_BE);
 		
 		this.B = new ModelParameter("B", "", B, 0.0,1000.0, 1);
 		this.modelParameters.add(this.B);
-		this.R_in = new ModelParameter("R_{S}", "\u03A9", r_in, 10e-6,10e9, 1);
+		this.R_in = new ModelParameter("R_{S}", "\u03A9", r_in, 10e-6,10e9);
 		this.modelParameters.add(this.R_in);
 		this.R_out = new ModelParameter("R_{L}", "\u03A9", r_out, 10e-6,10e9, 1);
 		this.modelParameters.add(this.R_out);
@@ -116,6 +116,7 @@ public class IdealAmplifier implements Amplifier {
 		}
 		double I_C = this.B.getValue()*I_s.getValue()*Math.exp((this.V_BE.getValue())/V_T.getValue());
 		idealSignalOut.multiply((1/((1/R_C.getValue())+(1/R_out.getValue())))*I_C);
+		idealSignalOut.signalToPower(R_out.getValue());
 		
 		outputSignal.setFrequencySignal(Utility.frequenciesToSignal(idealSignalOut,outputSignal.getSignal().getSamples()/2+1, outputSignal.getSignal().getSamplingRate()));
 		outputSignal.setNoiseLevel(getNoiseLevel());
@@ -139,6 +140,25 @@ public class IdealAmplifier implements Amplifier {
 		}
 	}
 	
+	public DSPSignal getAmplifiedSpectrum(List<Cosine> cosList) {
+		CosSignal idealSignalIn = new CosSignal();
+		for(Cosine cos : cosList) {
+			double u_BE = Utility.dBtoAmplitude(inputSignal.getGain())*cos.getAmplitude()*R_BE.getValue()/(R_BE.getValue()+R_in.getValue());
+			idealSignalIn.add(new CosFrequency("", u_BE/V_T.getValue(), cos.getFrequency()));
+		}
+		CosSignal idealSignalOut = new CosSignal();
+		int taylorDepth = PropertyLoader.getIntProp("conf.taylorDepth");
+		for (int i = 1 ; i <= taylorDepth; i++) {
+			CosSignal cTmp = idealSignalIn.power(i);
+			cTmp.multiply(Utility.factorial(i));
+			idealSignalOut.add(cTmp);
+		}
+		double I_C = this.B.getValue()*I_s.getValue()*Math.exp((this.V_BE.getValue())/V_T.getValue());
+		idealSignalOut.multiply((1/((1/R_C.getValue())+(1/R_out.getValue())))*I_C);
+		idealSignalOut.signalToPower(R_out.getValue());
+		
+		return Utility.frequenciesToSignal(idealSignalOut,outputSignal.getSignal().getSamples()/2+1, outputSignal.getSignal().getSamplingRate());
+	}
 
 	public DSPSignal getAmplifiedSpectrum(DSPSignal inputSignal) {
 		Complex[] input = inputSignal.getSignal();
@@ -151,7 +171,10 @@ public class IdealAmplifier implements Amplifier {
 		int resultLength = (complexFFTResult.length / 2) + 1;	
 		Complex[] fftoutputArray = new Complex[resultLength];
 		for (int i = 0; i < resultLength; i++) {
-			fftoutputArray[i] = new Complex(2*complexFFTResult[i].abs()/inputSignal.getSamples());
+			double tmp = 2*complexFFTResult[i].abs()/inputSignal.getSamples();
+			tmp = tmp/Math.sqrt(2);
+			tmp = (tmp*tmp)/this.R_out.getValue();
+			fftoutputArray[i] = new Complex(tmp);
 		}	
 		DSPSignal outputDSPSignal = new DSPSignal(inputSignal.getSamplingRate(), resultLength);
 		outputDSPSignal.setSignal(fftoutputArray);

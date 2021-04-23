@@ -75,6 +75,7 @@ public class OutputSignalModel {
 			}
 		}
 		if (newSamplingRate != samplingRate) {
+			
 			samplingRate = newSamplingRate;
 		}
 	}

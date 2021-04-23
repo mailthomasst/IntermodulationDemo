@@ -64,6 +64,14 @@
     -fx-foreground-color: -fx-my-background-dark;
 }
 
+.default-color0.chart-symbol { /* solid diamond */
+    -fx-background-color: #22bad9;
+    -fx-background-radius: 0;
+    -fx-padding: 7px 5px 7px 5px;
+    -fx-shape: "M5,0 L10,9 L5,18 L0,9 Z";
+}
+
+
 .hbox {
     -fx-spacing: 3;
 }
@@ -344,7 +352,20 @@
         -fx-stroke-dash-array: 2 12 12 2;
 }
 
-.default-color0.chart-series-line { -fx-stroke: -fx-chart-series-default; }
+.chart-line-symbol { 
+	-fx-background-color: 
+	-fx-chart-series-default, -fx-chart-series-default; 
+	-fx-background-radius: 5px;
+    	-fx-padding: 5px;
+}
+
+.default-color0.chart-series-line { -fx-stroke: -fx-chart-series-default;}
+.default-color0.chart-line-symbol { 
+	-fx-background-color: 
+	-fx-chart-series-default, -fx-chart-series-default; 
+	-fx-background-radius: 2px;
+    	-fx-padding: 2px;}
+
 .default-color0dash.chart-series-line { 
 	-fx-stroke: -fx-chart-series-default-highlite;
 	-fx-stroke-width: 2;
@@ -364,6 +385,17 @@
 	-fx-stroke-width: 2;
         -fx-stroke-dash-array: 2 12 12 2;
 }
+
+.default-color1point.chart-symbol {
+	-fx-stroke: -fx-chart-series-dist-two-highlite;
+	-fx-background-color: -fx-chart-series-dist-two-highlite;
+}
+.default-color2point.chart-symbol {
+	-fx-stroke: -fx-chart-series-dist-three-highlite;
+	-fx-background-color: -fx-chart-series-dist-three-highlite;
+}
+
+
 
 .chart-vertical-zero-line {
     -fx-stroke: -fx-chart-high-contrast;

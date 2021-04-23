@@ -12,7 +12,7 @@ import de.thkoeln.intermodulationdemo.util.Utility;
 public class SweepModel {
 	private Amplifier amp;
 	private List<Cosine> cosList;
-	private double amplitude;
+	private double inputPower;
 	
 	private double[] k1series;
 	private double[] k2series;
@@ -22,19 +22,22 @@ public class SweepModel {
 	private double[] k2IdealSeries;
 	private double[] k3IdealSeries;
 	
+	private int oip2x,oip3x;
+	private double oip2y,oip3y;
+	
 	private double[] noiseSeries;
 
 	private double[] xseries;
 	
 	private int sweepDeltaDB;
 	
-	public SweepModel(Amplifier amp, double amplitude, int sweepDeltaDB) {
+	public SweepModel(Amplifier amp, double inputPowerdB, int sweepDeltaDB) {
 		super();
 		
 		this.cosList = new ArrayList<Cosine>();
 		
 		this.amp = amp;
-		this.amplitude = amplitude;
+		this.inputPower = inputPowerdB;
 		this.sweepDeltaDB = sweepDeltaDB;
 		this.k1series = new double[sweepDeltaDB+1];
 		this.k2series = new double[sweepDeltaDB+1];
@@ -49,14 +52,15 @@ public class SweepModel {
 	}
 	
 	public void sweep() {
+		
 		for (int i = 0; i < sweepDeltaDB+1; i++ ) {
-			xseries[i] = i+Utility.vtodBmV(amplitude);
+			xseries[i] = i+this.inputPower;
 			cosList.clear();
-			cosList.add(new Cosine(10, Utility.dBmVtoV(xseries[i])));
-			cosList.add(new Cosine(11, Utility.dBmVtoV(xseries[i])));
+			cosList.add(new Cosine(10, Utility.dBmtoV(xseries[i],50.0)));
+			cosList.add(new Cosine(11, Utility.dBmtoV(xseries[i],50.0)));
 			
-			DSPSignal timeSignal = new DSPSignal(256, (int)Math.pow(2, 10), cosList);
-			DSPSignal frequencySignal = amp.getAmplifiedSpectrum(timeSignal);
+			//DSPSignal timeSignal = new DSPSignal(256, (int)Math.pow(2, 10), cosList);
+			DSPSignal frequencySignal = amp.getAmplifiedSpectrum(cosList);
 			FrequencyDomainGraph fdg = new FrequencyDomainGraph(frequencySignal, frequencySignal.getSamples());
 			
 			for (int j = 0; j < frequencySignal.getSamples(); j++) {
@@ -71,6 +75,7 @@ public class SweepModel {
 				}
 			}
 		}
+		
 		noise();
 		idealSweep();
 	}
@@ -96,6 +101,15 @@ public class SweepModel {
 			this.k2IdealSeries[i] = this.k2series[k2]+(i-k2)*2;
 			this.k3IdealSeries[i] = this.k3series[k3]+(i-k3)*3;
 		}
+		
+		double y = -(xseries[k3]) + this.k1series[k3];
+		double y2 = -2*xseries[k3] + this.k2series[k3];
+		double y3 = -3*xseries[k3] + this.k3series[k3];
+		
+		this.oip2x = (int)Math.round(y-y2);
+		this.oip2y = y+this.oip2x;
+		this.oip3x = (int)Math.round((y-y3)/2);
+		this.oip3y = y+this.oip3x;
 	}
 	
 	
@@ -130,4 +144,21 @@ public class SweepModel {
 	public double[] getNoiseSeries() {
 		return noiseSeries;
 	}
+
+	public double getOip2x() {
+		return oip2x;
+	}
+
+	public double getOip2y() {
+		return oip2y;
+	}
+
+	public double getOip3x() {
+		return oip3x;
+	}
+
+	public double getOip3y() {
+		return oip3y;
+	}
+	
 }

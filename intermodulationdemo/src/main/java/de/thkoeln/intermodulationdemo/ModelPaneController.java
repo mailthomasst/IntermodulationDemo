@@ -35,6 +35,8 @@ public class ModelPaneController implements Initializable {
 	private FlowPane parameterList1;
 	@FXML
 	private FlowPane parameterList2;
+	@FXML
+	private FlowPane parameterList3;
 
 	private Amplifier amplifierModel;
 	private de.thkoeln.intermodulationdemo.model.ChangeListener modelChangeListener;
@@ -85,12 +87,18 @@ public class ModelPaneController implements Initializable {
 		parameterList2.setVgap(3);
 		parameterList2.setHgap(3);
 		parameterList2.getStyleClass().add("model-flow-pane");
+		
+		parameterList3.setPrefWrapLength(340);
+		parameterList3.setVgap(3);
+		parameterList3.setHgap(3);
+		parameterList3.getStyleClass().add("model-flow-pane");
 	}
 	
 	private void refreshParameterList() {
 		
 		parameterList1.getChildren().clear();
 		parameterList2.getChildren().clear();
+		parameterList3.getChildren().clear();
 		for (ModelParameter modelParameter : amplifierModel.getModelParameter()) {
 			InputControlItem inputItem = new InputControlItem(modelParameter.getLabel(), modelParameter.getUnit(),modelParameter.getMinValue(), modelParameter.getMaxValue(), modelParameter.getValue(),true, true);
 			inputItem.addChangeListener(new MyChangeListener() {
@@ -102,6 +110,7 @@ public class ModelPaneController implements Initializable {
 			});
 			if (modelParameter.getGroup() == 1) parameterList1.getChildren().add(inputItem.getTextFieldStackPane());
 			if (modelParameter.getGroup() == 2) parameterList2.getChildren().add(inputItem.getTextFieldStackPane());
+			if (modelParameter.getGroup() == 3) parameterList3.getChildren().add(inputItem.getTextFieldStackPane());
 		}
 	}
 	
