@@ -87,11 +87,10 @@ public class SignalPaneController implements Initializable {
 		addFrequencyButton.setOnAction(addFrequencyButtonActionEventHandler);
 		signalModel = Context.getInstance().getAmplificationModel().getInputSignalModel();
 		signalModel.loadDefault();
-		
 		lineChart.setAnimated(false);
 		((NumberAxis)lineChart.getXAxis()).setTickLabelFormatter(Utility.getTickLabelFormatterSecond());
 		((NumberAxis)lineChart.getYAxis()).setTickLabelFormatter(Utility.getTickLabelFormatterVolt());
-		tdGraph1 = new TimeDomainGraph(signalModel.getSignal());
+		tdGraph1 = new TimeDomainGraph(signalModel.getSignal(),11000000);
 		jfxGraph = new JFXTimeDomainGraph(tdGraph1, lineChart);
 		de.thkoeln.intermodulationdemo.model.ChangeListener signalChangeListener = new de.thkoeln.intermodulationdemo.model.ChangeListener() {
 			@Override

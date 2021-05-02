@@ -60,7 +60,7 @@ public class IdealAmplifier implements Amplifier {
 		this.modelParameters.add(this.I_s);
 		this.V_T = new ModelParameter("V_T", "V", v_T, 10e-6,10e0, 3);
 		this.modelParameters.add(this.V_T);
-		this.R_BE = new ModelParameter("r_{BE}", "\u03A9", r_BE, 10e-3,10e9, 3);
+		this.R_BE = new ModelParameter("r_{BE}", "\u03A9", r_BE, 10e-3,10e9);
 		this.modelParameters.add(this.R_BE);
 		this.R_C = new ModelParameter("R'_{C}", "\u03A9", r_C, 10e-3,10e9);
 		this.modelParameters.add(this.R_C);
@@ -157,7 +157,7 @@ public class IdealAmplifier implements Amplifier {
 		idealSignalOut.multiply((1/((1/R_C.getValue())+(1/R_out.getValue())))*I_C);
 		idealSignalOut.signalToPower(R_out.getValue());
 		
-		return Utility.frequenciesToSignal(idealSignalOut,outputSignal.getSignal().getSamples()/2+1, outputSignal.getSignal().getSamplingRate());
+		return Utility.frequenciesToSignal(idealSignalOut,outputSignal.getSignal().getSamples()/2+1, 256);
 	}
 
 	public DSPSignal getAmplifiedSpectrum(DSPSignal inputSignal) {

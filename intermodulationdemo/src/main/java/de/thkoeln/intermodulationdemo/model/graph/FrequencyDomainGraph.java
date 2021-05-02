@@ -17,11 +17,13 @@ public class FrequencyDomainGraph {
 	private boolean yLog;
 	private double[] xSeries;
 	private double[] ySeries;
+	private double upperXBound;
 	
 	public FrequencyDomainGraph(DSPSignal signal, int samples) {
 		super();
 		
 		this.samples = samples;
+		this.upperXBound = 40;
 		xMin 	= 0;
 		xMax	= samples/signal.getSamplingRate();
 		xSeries = new double[samples];
@@ -32,9 +34,10 @@ public class FrequencyDomainGraph {
 	}
 	
 	public void refreshSignal(DSPSignal signal) {
+		setSamples(signal.getSamples());
 		yMax = 10.0*Math.log10(signal.getSignal()[0].getReal()/(0.001)); //signal.getSignal()[0].getReal();
 		yMin = 10.0*Math.log10(signal.getSignal()[0].getReal()/(0.001)); //signal.getSignal()[0].getReal();
-		for (int i = 0; i < samples/4; i++) {
+		for (int i = 0; i < samples; i++) {
 			ySeries[i]=10.0*Math.log10(signal.getSignal()[i].getReal()/(0.001));
 			xSeries[i]=((double)i)*signal.getSamplingRate()/((samples-1)*2);
 			if (ySeries[i] > yMax) {
@@ -43,13 +46,22 @@ public class FrequencyDomainGraph {
 				yMin = ySeries[i];  
 			}
 		}
+		this.upperXBound = upperXBound(xSeries[samples-1]/4); //(((int)xSeries[samples-1])/40)*10+10.0;
+	}
+	
+	public double upperXBound(double x) {
+		if(x/10 <= 10) {
+			return (((int)x)/10)*10+10.0;
+		} else {
+			return upperXBound(x/10)*10;
+		}
 	}
 	
 	public double getUpperBound() {
-		if (((((int)yMax)/20)*20+20.0) < 20) {
-			return 20.0;
+		if (((((int)yMax)/10)*10+10.0) < 10) {
+			return 10.0;
 		}
-		return (((int)yMax)/20)*20+20.0;
+		return (((int)yMax)/10)*10+10.0;
 	}
 	
 	public double getLowerBound() {
@@ -111,6 +123,10 @@ public class FrequencyDomainGraph {
 	}
 	public void setYSeries(double[] series) {
 		this.ySeries = series;
+	}
+
+	public double getUpperXBound() {
+		return upperXBound;
 	}
 
 }

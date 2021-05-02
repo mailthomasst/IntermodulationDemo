@@ -23,7 +23,7 @@ public class App extends Application {
 	
     private double xOffset = 0;
     private double yOffset = 0;
-    private static Stage stage = null;
+    public static Stage stage = null;
 
     public static void main(String[] args) {
         launch();

@@ -5,6 +5,7 @@
 
 package de.thkoeln.intermodulationdemo;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,6 +14,7 @@ import de.thkoeln.intermodulationdemo.model.SweepModel;
 import de.thkoeln.intermodulationdemo.model.graph.FrequencyDomainGraph;
 import de.thkoeln.intermodulationdemo.util.PropertyLoader;
 import de.thkoeln.intermodulationdemo.util.Utility;
+import de.thkoeln.intermodulationdemo.view.ChartPrinter;
 import de.thkoeln.intermodulationdemo.view.InputControlItem;
 import de.thkoeln.intermodulationdemo.view.JFXFrequencyDomainGraph;
 import javafx.event.ActionEvent;
@@ -110,6 +112,18 @@ public class SweepPaneController implements Initializable {
 			} 
 		});
 		
+		Button btnPrint = new Button("Print...");
+		btnPrint.setOnAction(new EventHandler<ActionEvent>() {
+			@Override 
+			public void handle(ActionEvent e) { 
+				try {
+					ChartPrinter.saveAsPng(anchorPane);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			} 
+		});
+		
 		Label legendLabel = new Label(" Legend");
 		legendLabel.setPrefWidth(100);
 		
@@ -162,6 +176,7 @@ public class SweepPaneController implements Initializable {
 		optionsVBox.getChildren().add(endHBox);
 		//optionsVBox.getChildren().add(optionHBox);
 		optionsVBox.getChildren().add(btn);
+		optionsVBox.getChildren().add(btnPrint);
 		optionsVBox.getChildren().add(new Label(" "));
 		optionsVBox.getChildren().add(legendLabel);
 		optionsVBox.getChildren().add(lHBox1);
@@ -298,6 +313,46 @@ public class SweepPaneController implements Initializable {
              //Removing class on exit
              d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
         }
+        
+		final XYChart.Series<Number, Number> seriesNoiseK1 = new XYChart.Series<Number, Number>();
+		seriesNoiseK1.getData().add(new XYChart.Data<Number, Number>(sweep.getNoisek1x(),sweep.getNoisek1y()));
+		lineChart1.getData().add(seriesNoiseK1);
+        for (XYChart.Data<Number, Number> d : seriesNoiseK1.getData()) {
+        	Tooltip myTT = new Tooltip(((int)(100.0*d.getYValue().doubleValue())/100.0) + "dBm");
+        	myTT.setShowDelay(Duration.millis(10));
+        	Tooltip.install(d.getNode(), myTT);
+             //Adding class on hover
+             d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+             //Removing class on exit
+             d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
+        
+        final XYChart.Series<Number, Number> seriesNoiseK2 = new XYChart.Series<Number, Number>();
+        seriesNoiseK2.getData().add(new XYChart.Data<Number, Number>(sweep.getNoisek2x(),sweep.getNoisek2y()));
+		lineChart1.getData().add(seriesNoiseK2);
+        for (XYChart.Data<Number, Number> d : seriesNoiseK2.getData()) {
+        	Tooltip myTT = new Tooltip(((int)(100.0*d.getYValue().doubleValue())/100.0) + "dBm");
+        	myTT.setShowDelay(Duration.millis(10));
+        	Tooltip.install(d.getNode(), myTT);
+             //Adding class on hover
+             d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+             //Removing class on exit
+             d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
+        
+        final XYChart.Series<Number, Number> seriesNoiseK3 = new XYChart.Series<Number, Number>();
+        seriesNoiseK3.getData().add(new XYChart.Data<Number, Number>(sweep.getNoisek3x(),sweep.getNoisek3y()));
+		lineChart1.getData().add(seriesNoiseK3);
+        for (XYChart.Data<Number, Number> d : seriesNoiseK3.getData()) {
+        	Tooltip myTT = new Tooltip(((int)(100.0*d.getYValue().doubleValue())/100.0) + "dBm");
+        	myTT.setShowDelay(Duration.millis(10));
+        	Tooltip.install(d.getNode(), myTT);
+             //Adding class on hover
+             d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+             //Removing class on exit
+             d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
+        
 		
 		//Ideal Lines
 		if(checkBox.isSelected()) {

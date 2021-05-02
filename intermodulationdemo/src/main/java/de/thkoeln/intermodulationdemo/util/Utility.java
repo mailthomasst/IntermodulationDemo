@@ -254,7 +254,7 @@ public class Utility {
 		}
 		for (CosFrequency cos : cs.getFreqSet()) {
 			int index = (int) (cos.getFrequency()*factor);
-			if (index < samples) {
+			if (index < samples && index > 1) {
 				signal[index] = signal[index].add(new Complex(cos.getFactor()));
 			}
 		}

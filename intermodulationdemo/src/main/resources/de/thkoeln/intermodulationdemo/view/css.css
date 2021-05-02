@@ -363,8 +363,8 @@
 .default-color0.chart-line-symbol { 
 	-fx-background-color: 
 	-fx-chart-series-default, -fx-chart-series-default; 
-	-fx-background-radius: 2px;
-    	-fx-padding: 2px;}
+	-fx-background-radius: 5px;
+    	-fx-padding: 5px;}
 
 .default-color0dash.chart-series-line { 
 	-fx-stroke: -fx-chart-series-default-highlite;

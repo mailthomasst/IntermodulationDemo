@@ -120,7 +120,7 @@ public class InputControlItem {
 		this.label.setPrefWidth(80);
 
 		if (latex) {
-			this.latexLabel = new LatexViewFixed("\\textcolor{0,0,0}{" + label + "}");
+			this.latexLabel = new LatexViewFixed("\\textcolor{0,0,0}{{\\large \\bf " + label + "}}");
 			this.latexLabel.setSize(9);
 			this.latexLabel.getStyleClass().add("input-control-label");
 		}

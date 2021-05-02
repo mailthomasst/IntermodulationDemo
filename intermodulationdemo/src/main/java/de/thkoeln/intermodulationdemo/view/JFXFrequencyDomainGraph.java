@@ -49,7 +49,7 @@ public class JFXFrequencyDomainGraph {
 		    data.getNode().getStyleClass().add("default-color0");
 		    Tooltip myTT = new Tooltip(((int)(100.0*data.getYValue().doubleValue())/100.0) + "dBm");
 		    myTT.setShowDelay(Duration.millis(10));
-        	Tooltip.install(data.getNode(), myTT);
+		    Tooltip.install(data.getNode(), myTT);
 		}
 	}
 	

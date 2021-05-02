@@ -33,8 +33,8 @@ public class InputSignalModel {
 	}
 	
 	public void loadDefault() {
-		addCosine(10.0, 0.0001);//TODO (auslagern)
-		addCosine(11.0, 0.0001);//TODO (auslagern)
+		addCosine(10000000.0, 0.0001);//TODO (auslagern)
+		addCosine(11000000.0, 0.0001);//TODO (auslagern)
 	}
 	
 	public double getGain() {

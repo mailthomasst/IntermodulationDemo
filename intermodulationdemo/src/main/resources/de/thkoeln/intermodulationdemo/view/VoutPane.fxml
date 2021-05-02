@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 
 <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 	AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
@@ -29,7 +31,7 @@
 			AnchorPane.topAnchor="30.0">
 			<children>
 				<!-- Main -->
-				<AnchorPane prefWidth="1340">
+				<AnchorPane fx:id="anchorPaneOut" prefWidth="1340">
 					<children>
 						<LineChart fx:id="lineChart" layoutX="-44.0"
 							layoutY="-103.0" AnchorPane.bottomAnchor="0.0"
@@ -50,6 +52,13 @@
 						AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" 
 						styleClass="label-headline4">
 					</Label>
+					<VBox layoutX="-27.0" layoutY="-36.0" spacing="20.0"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" fx:id="vboxVout">
+					<padding>
+						<Insets left="10.0" />
+					</padding>
+					</VBox>
 				</AnchorPane>
 			</children>
 		</HBox>

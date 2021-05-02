@@ -5,6 +5,7 @@
 
 package de.thkoeln.intermodulationdemo;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,6 +14,7 @@ import de.thkoeln.intermodulationdemo.model.InputSignalModel;
 import de.thkoeln.intermodulationdemo.model.OutputSignalModel;
 import de.thkoeln.intermodulationdemo.model.graph.FrequencyDomainGraph;
 import de.thkoeln.intermodulationdemo.util.Utility;
+import de.thkoeln.intermodulationdemo.view.ChartPrinter;
 import de.thkoeln.intermodulationdemo.view.JFXFrequencyDomainGraph;
 import de.thkoeln.intermodulationdemo.view.LineChartWithMarkers;
 import javafx.event.ActionEvent;
@@ -23,8 +25,10 @@ import javafx.geometry.Side;
 import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class SpectrumPaneController implements Initializable {
 	
@@ -40,6 +44,11 @@ public class SpectrumPaneController implements Initializable {
 	@FXML
 	private CheckBox check3; 
 	
+	@FXML
+	private VBox vboxSpectrum;
+	
+	//@FXML
+	//private Button btnPrint; 
 	
 	private LineChart<Number,Number> lineChart1;
 	private Axis<Number> xAxis;
@@ -74,6 +83,18 @@ public class SpectrumPaneController implements Initializable {
 		    	   refreshOutput();
 		       } 
 		    });
+		Button btnPrint= new Button("Print...");
+		btnPrint.setOnAction(new EventHandler<ActionEvent>() {
+			@Override 
+			public void handle(ActionEvent e) { 
+				try {
+					ChartPrinter.saveAsPng(anchorPane);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			} 
+		});
+		vboxSpectrum.getChildren().add(btnPrint);
 		
 		outputSignalModel.addChangeListener(modelChangeListener);
 		//Context.getInstance().getAmplificationModel().setAllListeners(modelChangeListener);
@@ -83,6 +104,7 @@ public class SpectrumPaneController implements Initializable {
 		xAxis = new NumberAxis();
 		yAxis = new NumberAxis();
 		yAxis.setAutoRanging(false);
+		xAxis.setAutoRanging(false);
 		
 		((NumberAxis)yAxis).setUpperBound(80);
 		((NumberAxis)yAxis).setLowerBound(0);
@@ -115,7 +137,11 @@ public class SpectrumPaneController implements Initializable {
 		fdGraph.refreshSignal(outputSignalModel.getSpectrum());
 		jfxGraph.refreshChart();
 		((NumberAxis)yAxis).setUpperBound(fdGraph.getUpperBound());
-		((NumberAxis)yAxis).setLowerBound(outputSignalModel.getNoiseLevel());
+		double lowBound = (((int)outputSignalModel.getNoiseLevel())/10)*10-10.0;
+		((NumberAxis)yAxis).setLowerBound(lowBound);
+		((NumberAxis)xAxis).setUpperBound(fdGraph.getUpperXBound());
+		((NumberAxis)xAxis).setTickUnit(fdGraph.getUpperXBound()/8);
+		
 		if(check3.isSelected()) {
 			jfxGraph.plotThirdOrderDistortion(inputSignalModel.genIdealSignal().getXOrderDisplay(3));
 		} else {

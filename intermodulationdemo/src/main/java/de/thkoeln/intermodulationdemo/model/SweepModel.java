@@ -25,6 +25,8 @@ public class SweepModel {
 	private int oip2x,oip3x;
 	private double oip2y,oip3y;
 	
+	private int noisek1x,noisek2x,noisek3x;
+	
 	private double[] noiseSeries;
 
 	private double[] xseries;
@@ -106,6 +108,14 @@ public class SweepModel {
 		double y2 = -2*xseries[k3] + this.k2series[k3];
 		double y3 = -3*xseries[k3] + this.k3series[k3];
 		
+		this.noisek1x = this.noisek2x = this.noisek3x = -1000;
+		double noiseLevel = amp.getNoiseLevel();
+		for (int i = 0; i < xseries.length; i++ ) {
+			if(this.k1series[i] <= noiseLevel) this.noisek1x = (int)xseries[i];
+			if(this.k2series[i] <= noiseLevel) this.noisek2x = (int)xseries[i];
+			if(this.k3series[i] <= noiseLevel) this.noisek3x = (int)xseries[i];
+		}
+		
 		this.oip2x = (int)Math.round(y-y2);
 		this.oip2y = y+this.oip2x;
 		this.oip3x = (int)Math.round((y-y3)/2);
@@ -161,4 +171,27 @@ public class SweepModel {
 		return oip3y;
 	}
 	
+	public int getNoisek1x() {
+		return noisek1x;
+	}
+
+	public int getNoisek2x() {
+		return noisek2x;
+	}
+
+	public int getNoisek3x() {
+		return noisek3x;
+	}
+
+	public double getNoisek1y() {
+		return amp.getNoiseLevel();
+	}
+
+	public double getNoisek2y() {
+		return amp.getNoiseLevel();
+	}
+
+	public double getNoisek3y() {
+		return amp.getNoiseLevel();
+	}
 }

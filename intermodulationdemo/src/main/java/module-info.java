@@ -6,6 +6,8 @@ module intermodulationdemo {
 	requires org.jfree.fxgraphics2d;
 	requires jlatexmath;
 	requires javafx.graphics;
+	requires java.desktop;
+	requires javafx.swing;
 
     opens de.thkoeln.intermodulationdemo to javafx.fxml;
     exports de.thkoeln.intermodulationdemo;
